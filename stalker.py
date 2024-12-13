@@ -8,6 +8,7 @@ from typing import Dict, List
 import httpx
 from dotenv import load_dotenv
 
+
 load_dotenv()
 
 
@@ -166,8 +167,10 @@ async def main() -> None:
                 print(f"\nNew song: {track['name']}")
                 print(f"Artist: {track['artist']}")
                 print(f"URL: {track['url']}")
-
-            message = format_tracks_message(new_tracks)
+            if len(new_tracks) > 10:
+                message = "Looks like your friends have added a lot of new songs to the playlist. Please check the playlist directly."
+            else:
+                message = format_tracks_message(new_tracks)
             await send_telegram_message(message)
             save_tracks(current_tracks, csv_path)
         else:
