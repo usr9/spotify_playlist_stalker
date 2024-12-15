@@ -151,7 +151,8 @@ def format_tracks_message(tracks: List[Dict]) -> str:
 
 
 async def main() -> None:
-    csv_path = Path('data/playlist_songs.csv')
+    WORKING_DIR = Path(__file__).resolve().parent
+    csv_path = WORKING_DIR / 'data/playlist_tracks.csv'
     
     try:
         token = await get_spotify_token()
